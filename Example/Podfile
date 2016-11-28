@@ -1,0 +1,21 @@
+use_frameworks!
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+        end
+    end
+end
+
+target 'MrThumb_Example' do
+    pod 'MrThumb', :path => '../'
+
+    target 'UnitTests' do
+        inherit! :search_paths
+
+        pod 'Quick', '~> 0.10'
+        pod 'Nimble', '~> 5.1'
+        pod 'Mockingjay', '~> 2.0'
+    end
+end
